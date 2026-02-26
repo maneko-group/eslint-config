@@ -1,39 +1,17 @@
-# NodeJS
-/node_modules
+# Binaries
+node_modules/
+dist/
 
-# Miscellaneous
-.DS_Store
-*.pem
+# IDEs files
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
 
-# Debug logs
+# Logs
 *.log
 pnpm-debug.log*
+report.[0-9]*
 
-# IDEs and editors
-.c9/
-.classpath
-/.idea
-*.launch
-.project
-.settings/
-*.sublime-workspace
-
-# VSCode
-.vscode/*
-!.vscode/extensions.json
-!.vscode/launch.json
-!.vscode/settings.json
-!.vscode/tasks.json
-
-# Runtime data
-*.pid
-*.pid.lock
-pids
-*.seed
-
-# Temp files
-.temp
-.tmp
-
-# NodeJS diagnostics reports
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+# Metadata
+.DS_Store
+Thumbs.db
