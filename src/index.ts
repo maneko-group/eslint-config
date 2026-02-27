@@ -69,13 +69,6 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
     configs.unshift({
       name: 'maneko-group/react',
       rules: {
-        'react/function-component-definition': [
-          'error',
-          {
-            namedComponents: ['arrow-function'],
-            unnamedComponents: 'arrow-function',
-          },
-        ],
         'react/prop-types': 'off',
         'react/react-in-jsx-scope': 'off',
       },
