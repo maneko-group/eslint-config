@@ -40,21 +40,21 @@ npm install -D eslint @maneko/eslint-config
 Create `eslint.config.mjs` in your project root:
 
 ```js
-import { eslint } from '@maneko/eslint-config';
+import { eslint } from '@maneko/eslint-config'
 
 export default eslint({
   // A simple example
   jsx: { a11y: true },
-  react: true
-});
+  react: true,
+})
 ```
 
 Minimal preset:
 
 ```js
-import { eslint } from '@maneko/eslint-config';
+import { eslint } from '@maneko/eslint-config'
 
-export default eslint();
+export default eslint()
 ```
 
 ## Usage & recipes
@@ -62,20 +62,20 @@ export default eslint();
 ### JavaScript
 
 ```js
-import { eslint } from '@maneko/eslint-config';
+import { eslint } from '@maneko/eslint-config'
 
-export default eslint();
+export default eslint()
 ```
 
 ### TypeScript + React
 
 ```js
-import { eslint } from '@maneko/eslint-config';
+import { eslint } from '@maneko/eslint-config'
 
 export default eslint({
   typescript: true,
-  react: { a11y: true }
-});
+  react: { a11y: true },
+})
 ```
 
 ### Combine with legacy `.eslintrc` (FlatCompat)
@@ -83,11 +83,11 @@ export default eslint({
 If you need to migrate legacy configs, use `@eslint/eslintrc` + `FlatCompat`:
 
 ```js
-import { FlatCompat } from '@eslint/eslintrc';
-import { eslint } from '@maneko/eslint-config';
+import { FlatCompat } from '@eslint/eslintrc'
+import { eslint } from '@maneko/eslint-config'
 
-const compat = new FlatCompat();
-export default eslint({}, ...compat.config({ extends: ['eslint:recommended'] }));
+const compat = new FlatCompat()
+export default eslint({}, ...compat.config({ extends: ['eslint:recommended'] }))
 ```
 
 ## Scripts (recommended)
@@ -160,17 +160,17 @@ Or use `null-ls` / `conform.nvim` as an alternative.
 Pass options or extra flat-configs to the factory:
 
 ```js
-import { eslint } from '@maneko/eslint-config';
+import { eslint } from '@maneko/eslint-config'
 
 export default eslint(
   { typescript: true, react: true },
   {
     files: ['**/*.ts'],
     rules: {
-      'no-console': 'warn'
-    }
-  }
-);
+      'no-console': 'warn',
+    },
+  },
+)
 ```
 
 Advanced composer example:
@@ -179,9 +179,9 @@ Advanced composer example:
 export default eslint()
   .prepend(/* config */)
   .override('maneko/stylistic/rules', {
-    rules: { 'style/semi': ['error', 'never'] }
+    rules: { 'style/semi': ['error', 'never'] },
   })
-  .renamePlugins({ ts: '@typescript-eslint' });
+  .renamePlugins({ ts: '@typescript-eslint' })
 ```
 
 ## Common problems & fixes (quick)

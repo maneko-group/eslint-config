@@ -19,28 +19,30 @@
   ],
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "import": "./index.js"
-    }
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
   "files": [
-    "index.d.ts",
-    "index.js"
+    "dist"
   ],
   "scripts": {
-    "format": "prettier --write \"*.js\"",
+    "build": "tsdown",
     "lint": "eslint . --fix",
-    "lint-inspector": "npx @eslint/config-inspector",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format": "prettier --write \"*.js\"",
+    "lint-inspector": "npx @eslint/config-inspector"
   },
   "peerDependencies": {
-    "eslint": "^9.38.0"
+    "eslint": "^9.10.0 || ^10.0.0"
   },
   "dependencies": {
     "@antfu/eslint-config": "^7.6.1",
@@ -49,10 +51,11 @@
   "devDependencies": {
     "@maneko/prettier-config": "^1.0.0",
     "bumpp": "^10.3.1",
-    "eslint": "^9.38.0",
+    "eslint": "^10.0.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.4",
     "prettier": "^3.8.1",
+    "tsdown": "0.21.0-beta.2",
     "typescript": "^5.9.3"
   },
   "lint-staged": {
