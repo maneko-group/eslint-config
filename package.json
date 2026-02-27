@@ -36,10 +36,14 @@
   ],
   "scripts": {
     "build": "tsdown",
-    "lint": "eslint . --fix",
-    "prepare": "husky",
-    "format": "prettier --write \"*.js\"",
-    "lint-inspector": "npx @eslint/config-inspector"
+    "watch": "tsdown --watch",
+    "dev": "eslint-config-inspector --config eslint.config.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp",
+    "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
     "eslint": "^9.10.0 || ^10.0.0"
@@ -49,14 +53,18 @@
     "eslint-flat-config-utils": "^3.0.1"
   },
   "devDependencies": {
+    "@eslint/config-inspector": "^1.4.2",
     "@maneko/prettier-config": "^1.0.0",
     "bumpp": "^10.3.1",
     "eslint": "^10.0.2",
-    "husky": "^9.1.7",
     "lint-staged": "^16.2.4",
     "prettier": "^3.8.1",
+    "simple-git-hooks": "^2.13.1",
     "tsdown": "0.21.0-beta.2",
     "typescript": "^5.9.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
     "*.{js,ts}": [
