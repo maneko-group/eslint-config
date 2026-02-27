@@ -50,7 +50,8 @@
   },
   "dependencies": {
     "@antfu/eslint-config": "^7.6.1",
-    "eslint-flat-config-utils": "^3.0.1"
+    "eslint-flat-config-utils": "^3.0.1",
+    "jiti": "^2.6.1"
   },
   "devDependencies": {
     "@eslint/config-inspector": "^1.4.2",

@@ -14,6 +14,9 @@ importers:
       eslint-flat-config-utils:
         specifier: ^3.0.1
         version: 3.0.1
+      jiti:
+        specifier: ^2.6.1
+        version: 2.6.1
     devDependencies:
       '@eslint/config-inspector':
         specifier: ^1.4.2
