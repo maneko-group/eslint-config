@@ -9,17 +9,6 @@ import type { FlatConfigComposer } from 'eslint-flat-config-utils'
 
 import antfu from '@antfu/eslint-config'
 
-import {
-  GLOB_ASTRO,
-  GLOB_ASTRO_TS,
-  GLOB_JS,
-  GLOB_JSX,
-  GLOB_SRC,
-  GLOB_SVELTE,
-  GLOB_TS,
-  GLOB_TSX,
-} from './globs'
-
 type EslintOptions = OptionsConfig & TypedFlatConfigItem
 
 export type Eslint = (
@@ -38,7 +27,7 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
       rules: {
         'style/arrow-parens': ['error', 'always'],
         'style/brace-style': 'off',
-        'style/comma-dangle': ['error', 'never'],
+        'style/comma-dangle': ['error', 'always-multiline'],
         'style/indent': ['error', 2, { SwitchCase: 1 }],
         'style/jsx-curly-newline': 'off',
         'style/jsx-one-expression-per-line': 'off',
@@ -60,7 +49,7 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
         'style/operator-linebreak': 'off',
         'style/quote-props': 'off',
         'style/quotes': ['error', 'single', { avoidEscape: true, allowTemplateLiterals: 'always' }],
-        'style/semi': ['error', 'always'],
+        'style/semi': ['error', 'never'],
       },
     })
   }
@@ -87,39 +76,13 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
     },
     {
       name: 'maneko-group/perfectionist',
-      files: [
-        GLOB_SRC,
-        GLOB_JS,
-        GLOB_JSX,
-        GLOB_TS,
-        GLOB_TSX,
-        GLOB_SVELTE,
-        GLOB_ASTRO,
-        GLOB_ASTRO_TS,
-      ],
       rules: {
-        'perfectionist/sort-imports': [
-          'error',
-          {
-            groups: [
-              'type-import',
-              ['value-builtin', 'value-external'],
-              'type-internal',
-              'value-internal',
-              ['type-parent', 'type-sibling', 'type-index'],
-              ['value-parent', 'value-sibling', 'value-index'],
-              'side-effect',
-              'side-effect-style',
-              'unknown',
-            ],
-            internalPattern: ['^~/.*', '^@/.*'],
-            order: 'asc',
-            type: 'natural',
-          },
-        ],
         'perfectionist/sort-jsx-props': [
           'error',
           {
+            type: 'alphabetical',
+            order: 'asc',
+            groups: ['shorthand-prop', 'reserved', 'multiline-prop', 'unknown', 'callback'],
             customGroups: [
               {
                 groupName: 'reserved',
@@ -130,14 +93,14 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
                 elementNamePattern: '^on[A-Z].*',
               },
             ],
-            groups: ['shorthand-prop', 'reserved', 'multiline-prop', 'unknown', 'callback'],
-            order: 'asc',
-            type: 'alphabetical',
           },
         ],
         'perfectionist/sort-union-types': [
           'error',
           {
+            type: 'alphabetical',
+            order: 'asc',
+            specialCharacters: 'keep',
             groups: [
               'conditional',
               'function',
@@ -152,9 +115,6 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
               'union',
               'nullish',
             ],
-            order: 'asc',
-            specialCharacters: 'keep',
-            type: 'alphabetical',
           },
         ],
       },
