@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/npm/l/@maneko/eslint-config?style=flat&colorA=333333&colorB=000000)](https://npmjs.com/package/@maneko/eslint-config)
 [![Build with](https://img.shields.io/badge/built_with-tsdown@0.21.0--beta.2-000000?style=flat)](https://tsdown.dev)
 
-ESLint config preset. Inspired by [@siberiacancode/eslint](https://github.com/siberiacancode/core/tree/main/tools/eslint), based on [@antfu/eslint-config](https://github.com/antfu/eslint-config)
+Opinionated ESLint config preset. Inspired by [@siberiacancode/eslint](https://github.com/siberiacancode/core/tree/main/tools/eslint), based on [@antfu/eslint-config](https://github.com/antfu/eslint-config).
 
 ## Usage
 
@@ -189,15 +189,15 @@ If you want to apply lint and auto-fix before every commit, you can add the foll
 and then
 
 ```bash
-npm i -D lint-staged simple-git-hooks
+pnpm i -D lint-staged simple-git-hooks
 
 // to active the hooks
 npx simple-git-hooks
 ```
 
-## View what rules are enabled
+## View enabled rules
 
-I built a visual tool to help you view what rules are enabled in your project and apply them to what files, [@eslint/config-inspector](https://github.com/eslint/config-inspector)
+You can use [@eslint/config-inspector](https://github.com/eslint/config-inspector) to visually inspect which rules are enabled in your project and which files they apply to.
 
 Go to your project root that contains `eslint.config.js` and run:
 
