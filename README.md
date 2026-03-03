@@ -1,204 +1,231 @@
-# @maneko/eslint-config
+<h1 align='center' alt='Title'>@maneko/eslint-config</h1>
 
-[![Stars](https://img.shields.io/github/stars/maneko-org/eslint-config?style=flat-square&logoColor=white)](https://github.com/maneko-org/eslint-config/stargazers)
-[![Forks](https://img.shields.io/github/forks/maneko-org/eslint-config?style=flat-square&logoColor=white)](https://github.com/maneko-org/eslint-config/network/members)
-[![Pull Requests](https://img.shields.io/github/issues-pr/maneko-org/eslint-config?style=flat-square&logoColor=white)](https://github.com/maneko-org/eslint-config/pulls)
-[![Issues](https://img.shields.io/github/issues/maneko-org/eslint-config?style=flat-square&logoColor=white)](https://github.com/maneko-org/eslint-config/issues)
-[![Contributors](https://img.shields.io/github/contributors/maneko-org/eslint-config?style=flat-square&logoColor=white)](https://github.com/maneko-org/eslint-config/graphs/contributors)
-[![License](https://img.shields.io/github/license/maneko-org/eslint-config?style=flat-square&logoColor=white)](https://github.com/maneko-org/eslint-config/blob/main/LICENSE)
+[![Version](https://img.shields.io/npm/v/@maneko/eslint-config?style=flat&colorA=111111&colorB=000000)](https://npmjs.com/package/@maneko/eslint-config)
+[![Downloads](https://img.shields.io/npm/dt/@maneko/eslint-config.svg?style=flat&colorA=222222&colorB=000000)](https://npmjs.com/package/@maneko/eslint-config)
+[![License](https://img.shields.io/npm/l/@maneko/eslint-config?style=flat&colorA=333333&colorB=000000)](https://npmjs.com/package/@maneko/eslint-config)
+[![Build with](https://img.shields.io/badge/built_with-tsdown@0.21.0--beta.2-000000?style=flat)](https://tsdown.dev)
 
-A shared, ESLint config four our projects - simple, consistent and modern. Inspired by `@antfu/eslint-config`, tailored for real-world apps and libraries.
+ESLint config preset. Inspired by [@siberiacancode/eslint](https://github.com/siberiacancode/core/tree/main/tools/eslint), based on [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 
-## Why use this
+## Usage
 
-- **One-line setup** for a sensible, opinionated ESLint Flat config.
-- Works with JavaScript and TypeScript (TS support is opt-in).
-- Opt-in integrations: React, NextJS, Vue, Svelte, Astro, Solid.
-- Fixable stylistic rules that play nicely with `eslint --fix`, CI and `lint-staged`.
-- ESM-first and composable - easy to extend or override.
+### Install
 
-> **Note:** This preset is opinionated. It aims to reduce bikeshedding and keep diffs small. If you need different choices - override rules locally or fork.
-
-## Quick start
-
-Install preset + eslint in your project:
-
-```bash
-# pnpm (recommended)
-pnpm add -D eslint @maneko/eslint-config
-
-# yarn
-yarn add -D eslint @maneko/eslint-config
-
-# npm
-npm install -D eslint @maneko/eslint-config
+```sh
+pnpm i -D eslint @maneko/eslint-config
 ```
 
-> **Why install `eslint` in the project?**
-> The VS Code ESLint extension resolves `eslint` from the project root `node_modules`. Install it in the host project so the editor finds the binary and plugins.
+### Create config
 
 Create `eslint.config.mjs` in your project root:
 
 ```js
-import { eslint } from '@maneko/eslint-config'
-
-export default eslint({
-  // A simple example
-  jsx: { a11y: true },
-  react: true,
-})
-```
-
-Minimal preset:
-
-```js
+// eslint.config.mjs
 import { eslint } from '@maneko/eslint-config'
 
 export default eslint()
 ```
 
-## Usage & recipes
+### Add scripts for package.json
 
-### JavaScript
-
-```js
-import { eslint } from '@maneko/eslint-config'
-
-export default eslint()
-```
-
-### TypeScript + React
-
-```js
-import { eslint } from '@maneko/eslint-config'
-
-export default eslint({
-  typescript: true,
-  react: { a11y: true },
-})
-```
-
-### Combine with legacy `.eslintrc` (FlatCompat)
-
-If you need to migrate legacy configs, use `@eslint/eslintrc` + `FlatCompat`:
-
-```js
-import { FlatCompat } from '@eslint/eslintrc'
-import { eslint } from '@maneko/eslint-config'
-
-const compat = new FlatCompat()
-export default eslint({}, ...compat.config({ extends: ['eslint:recommended'] }))
-```
-
-## Scripts (recommended)
-
-Add scripts to `package.json`:
+For example:
 
 ```json
 {
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   }
 }
 ```
-
-Example `lint-staged` + `husky`:
-
-```json
-{
-  "lint-staged": {
-    "**/*.{js,ts,jsx,tsx,mjs}": ["pnpm lint:fix"]
-  }
-}
-```
-
-## IDEs and code editors
-
-### VS Code (recommended)
-
-Install the ESLint extension and use:
-
-```jsonc
-// .vscode/settings.json
-{
-  "prettier.enable": false,
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never"
-  }
-}
-```
-
-> Ensure `eslint` exists in the project root `node_modules` - the extension does not resolve nested copies reliably.
-
-### Neovim
-
-Use `nvim-lspconfig` or your favorite tooling. To run auto-fix on save:
-
-```lua
--- call EslintFixAll on BufWritePre
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = {"*.js","*.ts","*.jsx","*.tsx"},
-  callback = function() vim.cmd("EslintFixAll") end
-})
-```
-
-Or use `null-ls` / `conform.nvim` as an alternative.
-
-## Features
-
-- JavaScript & TypeScript support (TS opt-in via factory option).
-- React/Next/Vue/Svelte/Astro/Solid integrations (opt-in).
-- Accessibility rules (a11y) for React/Vue when enabled.
-- Opinionated stylistic rules (using `style/*`) that are auto-fixable.
-- Composer API: `.prepend()`, `.override()`, `.renamePlugins()` for advanced composition.
 
 ## Customization
 
-Pass options or extra flat-configs to the factory:
+Normally you only need to import the `eslint` preset:
 
 ```js
+// eslint.config.js
+import { eslint } from '@maneko/eslint-config'
+
+export default eslint()
+```
+
+And that's it! Or you can configure each integration individually, for example:
+
+```js
+// eslint.config.js
+import { eslint } from '@maneko/eslint-config'
+
+export default eslint({
+  // Type of the project. 'lib' for libraries, the default is 'app'
+  type: 'lib',
+
+  // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
+  // The `ignores` option in the option (first argument) is specifically treated to always be global ignores
+  // And will **extend** the config's default ignores, not override them
+  // You can also pass a function to modify the default ignores
+  ignores: [
+    '**/fixtures',
+    // ...globs
+  ],
+
+  // Parse the `.gitignore` file to get the ignores, on by default
+  gitignore: true,
+
+  // Enable stylistic formatting rules
+  // stylistic: true,
+
+  // Or customize the stylistic rules
+  stylistic: {
+    indent: 2, // 4, or 'tab'
+    quotes: 'single', // or 'double'
+  },
+
+  // TypeScript and Vue are autodetected, you can also explicitly enable them:
+  typescript: true,
+  vue: true,
+
+  // Disable jsonc and yaml support
+  jsonc: false,
+  yaml: false,
+})
+```
+
+The `eslint` factory function also accepts any number of arbitrary custom config overrides:
+
+```js
+// eslint.config.js
 import { eslint } from '@maneko/eslint-config'
 
 export default eslint(
-  { typescript: true, react: true },
+  {
+    // Configures for eslint's config
+  },
+
+  // From the second arguments they are ESLint Flat Configs
+  // you can have multiple configs
   {
     files: ['**/*.ts'],
+    rules: {},
+  },
+  {
+    rules: {},
+  },
+)
+```
+
+### Rules Overrides
+
+Certain rules would only be enabled in specific files, for example, `ts/*` rules would only be enabled in `.ts` files and `vue/*` rules would only be enabled in `.vue` files. If you want to override the rules, you need to specify the file extension:
+
+```js
+// eslint.config.js
+import { eslint } from '@maneko/eslint-config'
+
+export default eslint(
+  {
+    vue: true,
+    typescript: true,
+  },
+  {
+    // Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files
+    files: ['**/*.vue'],
     rules: {
-      'no-console': 'warn',
+      'vue/operator-linebreak': ['error', 'before'],
+    },
+  },
+  {
+    // Without `files`, they are general rules for all files
+    rules: {
+      'style/semi': ['error', 'never'],
     },
   },
 )
 ```
 
-Advanced composer example:
+We also provided the `overrides` options in each integration to make it easier:
 
 ```js
-export default eslint()
-  .prepend(/* config */)
-  .override('maneko/stylistic/rules', {
-    rules: { 'style/semi': ['error', 'never'] },
-  })
-  .renamePlugins({ ts: '@typescript-eslint' })
+// eslint.config.js
+import { eslint } from '@maneko/eslint-config'
+
+export default eslint({
+  vue: {
+    overrides: {
+      'vue/operator-linebreak': ['error', 'before'],
+    },
+  },
+  typescript: {
+    overrides: {
+      'ts/consistent-type-definitions': ['error', 'interface'],
+    },
+  },
+  yaml: {
+    overrides: {
+      // ...
+    },
+  },
+})
 ```
 
-## Common problems & fixes (quick)
+> [!TIP]
+> For advanced configuration of each integration, see [@antfu/eslint-config](https://github.com/antfu/eslint-config) docs.
 
-- **VS Code not linting** - make sure `eslint` is installed in the project root (not only globally).
-- **Missing parser/plugin errors** - install peer deps in the host project (e.g. `eslint-plugin-react`).
-- **Rules auto-fixed unexpectedly in the editor** - check `.vscode/settings.json` - some stylistic rules may be turned off in the editor and still be fixable on CLI runs.
-- **Legacy `.eslintrc`** - convert using `FlatCompat` or maintain a small adapter file.
+### Lint Staged
 
-## Contributing
+If you want to apply lint and auto-fix before every commit, you can add the following to your `package.json`:
 
-PRs welcome. Keep changes small and document any new opinionated rules.
+```json
+{
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
+```
 
-## Acknowledgements
+and then
 
-Inspired by `@antfu/eslint-config` - thanks for the design & DX philosophy.
+```bash
+npm i -D lint-staged simple-git-hooks
+
+// to active the hooks
+npx simple-git-hooks
+```
+
+## View what rules are enabled
+
+I built a visual tool to help you view what rules are enabled in your project and apply them to what files, [@eslint/config-inspector](https://github.com/eslint/config-inspector)
+
+Go to your project root that contains `eslint.config.js` and run:
+
+```bash
+npx @eslint/config-inspector
+```
+
+## Versioning Policy
+
+This project follows [Semantic Versioning](https://semver.org/) for releases. However, since this is just a config and involves opinions and many moving parts, we don't treat rules changes as breaking changes.
+
+### Changes Considered as Breaking Changes
+
+- Node.js version requirement changes
+- Huge refactors that might break the config
+- Plugins made major changes that might break the config
+- Changes that might affect most of the codebases
+
+### Changes Considered as Non-breaking Changes
+
+- Enable/disable rules and plugins (that might become stricter)
+- Rules options changes
+- Version bumps of dependencies
+
+### I prefer XXX...
+
+Sure, you can configure and override rules locally in your project to fit your needs. If that still does not work for you, you can always fork this repo and maintain your own.
 
 ## License
 
-`@maneko/eslint-config` is licensed under the MIT License. See the `LICENSE` file in the repository.
+[@maneko/eslint-config](https://github.com/maneko-group/eslint-config) is licensed under the [MIT](./LICENSE) license.
