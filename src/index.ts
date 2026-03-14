@@ -69,7 +69,9 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
     {
       name: 'maneko-group/rewrite',
       rules: {
+        'antfu/if-newline': 'off',
         'no-console': 'warn',
+        'react/prefer-namespace-import': 'off',
         'react-hooks/exhaustive-deps': 'off',
         'test/prefer-lowercase-title': 'off',
       },
@@ -77,6 +79,28 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
     {
       name: 'maneko-group/perfectionist',
       rules: {
+        'perfectionist/sort-imports': [
+          'error',
+          {
+            type: 'natural',
+            order: 'asc',
+            internalPattern: ['^~/.+', '^@/.+'],
+            newlinesBetween: 'ignore',
+            newlinesInside: 'ignore',
+            groups: [
+              'type-import',
+              ['value-builtin', 'value-external'],
+              'type-internal',
+              'value-internal',
+              ['type-parent', 'type-sibling', 'type-index'],
+              ['value-parent', 'value-sibling', 'value-index'],
+              'side-effect',
+              'side-effect-style',
+              'ts-equals-import',
+              'unknown',
+            ],
+          },
+        ],
         'perfectionist/sort-jsx-props': [
           'error',
           {
@@ -95,28 +119,13 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
             ],
           },
         ],
-        'perfectionist/sort-union-types': [
-          'error',
-          {
-            type: 'alphabetical',
-            order: 'asc',
-            specialCharacters: 'keep',
-            groups: [
-              'conditional',
-              'function',
-              'import',
-              'intersection',
-              'keyword',
-              'literal',
-              'named',
-              'object',
-              'operator',
-              'tuple',
-              'union',
-              'nullish',
-            ],
-          },
-        ],
+      },
+    },
+    {
+      name: 'maneko-group/disable/markdown',
+      files: ['**/*.md'],
+      rules: {
+        'perfectionist/sort-imports': 'off',
       },
     },
     ...configs,
