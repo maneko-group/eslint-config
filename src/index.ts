@@ -85,8 +85,7 @@ export const eslint: Eslint = (inputOptions = {} as EslintOptions, ...configs) =
             type: 'natural',
             order: 'asc',
             internalPattern: ['^~/.+', '^@/.+'],
-            newlinesBetween: 'ignore',
-            newlinesInside: 'ignore',
+            newlinesBetween: 1,
             groups: [
               'type-import',
               ['value-builtin', 'value-external'],
