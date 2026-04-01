@@ -9,16 +9,16 @@ catalogs:
   dev:
     '@eslint/config-inspector': ^1.5.0
     '@maneko/prettier-config': ^1.0.0
-    bumpp: ^10.3.1
-    eslint: ^10.0.3
-    lint-staged: 16.2.4
+    bumpp: ^11.0.1
+    eslint: ^10.1.0
+    lint-staged: 16.4.0
     prettier: ^3.8.1
     simple-git-hooks: ^2.13.1
-    tsdown: 0.21.2
-    typescript: ^5.9.3
+    tsdown: 0.21.7
+    typescript: ^6.0.2
   prod:
-    '@antfu/eslint-config': ^7.7.2
-    eslint-flat-config-utils: ^3.0.2
+    '@antfu/eslint-config': ^8.0.0
+    eslint-flat-config-utils: ^3.1.0
     jiti: ^2.6.1
 
 onlyBuiltDependencies:
