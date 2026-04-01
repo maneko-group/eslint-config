@@ -1,9 +1,9 @@
-<h1 align='center' alt='Title'>@maneko/eslint-config</h1>
+# @maneko/eslint-config
 
 [![Version](https://img.shields.io/npm/v/@maneko/eslint-config?style=flat&colorA=111111&colorB=000000)](https://npmjs.com/package/@maneko/eslint-config)
 [![Downloads](https://img.shields.io/npm/dt/@maneko/eslint-config.svg?style=flat&colorA=222222&colorB=000000)](https://npmjs.com/package/@maneko/eslint-config)
 [![License](https://img.shields.io/npm/l/@maneko/eslint-config?style=flat&colorA=333333&colorB=000000)](https://npmjs.com/package/@maneko/eslint-config)
-[![Build with](https://img.shields.io/badge/built_with-tsdown@0.21.2-000000?style=flat)](https://tsdown.dev)
+[![Build with](https://img.shields.io/badge/built_with-tsdown-000000?style=flat)](https://tsdown.dev)
 
 Opinionated ESLint config preset. Inspired by [@siberiacancode/eslint](https://github.com/siberiacancode/core/tree/main/tools/eslint), based on [@antfu/eslint-config](https://github.com/antfu/eslint-config).
 
