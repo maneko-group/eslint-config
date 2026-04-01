@@ -1,0 +1,25 @@
+catalogMode: prefer
+ignoreWorkspaceRootCheck: true
+shamefullyHoist: true
+shellEmulator: true
+strictPeerDependencies: false
+trustPolicy: no-downgrade
+
+catalogs:
+  dev:
+    '@eslint/config-inspector': ^1.5.0
+    '@maneko/prettier-config': ^1.0.0
+    bumpp: ^10.3.1
+    eslint: ^10.0.3
+    lint-staged: 16.2.4
+    prettier: ^3.8.1
+    simple-git-hooks: ^2.13.1
+    tsdown: 0.21.2
+    typescript: ^5.9.3
+  prod:
+    '@antfu/eslint-config': ^7.7.2
+    eslint-flat-config-utils: ^3.0.2
+    jiti: ^2.6.1
+
+onlyBuiltDependencies:
+  - simple-git-hooks
