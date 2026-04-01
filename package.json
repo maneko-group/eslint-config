@@ -40,7 +40,6 @@
     "dev": "eslint-config-inspector --config eslint.config.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "release": "bumpp",
     "prepare": "simple-git-hooks"
@@ -55,11 +54,9 @@
   },
   "devDependencies": {
     "@eslint/config-inspector": "catalog:dev",
-    "@maneko/prettier-config": "catalog:dev",
     "bumpp": "catalog:dev",
     "eslint": "catalog:dev",
     "lint-staged": "catalog:dev",
-    "prettier": "catalog:dev",
     "simple-git-hooks": "catalog:dev",
     "tsdown": "catalog:dev",
     "typescript": "catalog:dev"
@@ -68,9 +65,6 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*.{js,ts}": [
-      "prettier --write",
-      "eslint --fix"
-    ]
+    "*.ts": "eslint --fix"
   }
 }
